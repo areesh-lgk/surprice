@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Happy Birthday Hari Priya! ✨ | A Magical Celebration</title>
+  <meta name="description" content="A cinematic, interactive birthday celebration experience for Hari Priya with memories, Tamil quotes, fireworks, and surprises.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Great+Vibes&family=Mukta+Malar:wght@300;400;500;600;700;800&family=Noto+Sans+Tamil:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- External Animation Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+  <!-- Custom Glow Cursor -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- Ambient Animated Background Canvas -->
+  <canvas id="ambientCanvas" class="ambient-canvas"></canvas>
+  <div class="aurora-blobs" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Top Floating Header -->
+  <header class="top-nav" id="topNav">
+    <div class="nav-brand">
+      <span class="brand-icon">🎂</span>
+      <span class="brand-text">Birthday Celebration</span>
+    </div>
+    <div class="top-nav-actions">
+      <button class="music-toggle-btn" id="musicToggleBtn" aria-label="Toggle background music">
+        <span class="music-icon" id="musicIcon">🔊</span>
+        <span class="music-text">Music <span class="music-state" id="musicStateText">OFF</span></span>
+        <div class="audio-waves" id="audioWaves">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </button>
+      <button class="menu-toggle-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <span>✨ நேவிகேஷன்</span>
+      <button class="drawer-close-btn" id="drawerCloseBtn">&times;</button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="#hero" class="mobile-link active">Home 🌸</a></li>
+      <li><a href="#wishes" class="mobile-link">Wishes 💌</a></li>
+      <li><a href="#memories" class="mobile-link">Memories 📸</a></li>
+      <li><a href="#timeline" class="mobile-link">Timeline ✨</a></li>
+      <li><a href="#surprise" class="mobile-link">Surprise 🎁</a></li>
+      <li><a href="#heart-touch" class="mobile-link">Hearts 💗</a></li>
+      <li><a href="#fireworks" class="mobile-link">Fireworks 🎆</a></li>
+      <li><a href="#final" class="mobile-link">Final Wishes 👑</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Experience Wrapper -->
+  <main class="experience-container">
+
+    <!-- ==================== 1. HERO SECTION ==================== -->
+    <section class="hero-section" id="hero">
+      <div class="hero-content">
+        <div class="crown-badge" data-tilt>
+          <span class="crown-sparkle">✨</span>
+          <span class="crown-icon">👑</span>
+          <span class="crown-sparkle">✨</span>
+        </div>
+
+        <div class="birthday-tagline">
+          <span class="sparkle-icon">🎂</span>
+          <h2 class="sub-greeting">HAPPY BIRTHDAY</h2>
+          <span class="sparkle-icon">🎂</span>
+        </div>
+
+        <div class="name-container">
+          <h1 class="main-celebrant-name" id="heroTitle">
+            <span class="bracket">[</span>
+            <span class="name-text">HARI PRIYA .A</span>
+            <span class="bracket">]</span>
+          </h1>
+          <div class="nickname-pill">
+            <span class="heart-pulse">❤️</span>
+            <span class="nickname-text">Buddu mah • Hari mah</span>
+            <span class="heart-pulse">❤️</span>
+          </div>
+        </div>
+
+        <p class="hero-tamil-subtitle" id="heroSubtitle">
+          "இன்று ஒரு சாதாரண நாள் அல்ல...<br>
+          <span class="highlight-glow">ஒரு அழகான நினைவு பிறந்த நாள்</span> ❤️"
+        </p>
+
+        <div class="hero-cta-wrapper">
+          <button class="btn-surprise-cta" id="heroSurpriseBtn" data-magnetic>
+            <span class="btn-glow-pulse"></span>
+            <span class="btn-sparkle">✨</span>
+            <span class="btn-text">Open Your Surprise</span>
+            <span class="btn-sparkle">✨</span>
+          </button>
+        </div>
+
+        <div class="scroll-down-indicator" id="scrollIndicator">
+          <div class="mouse-icon">
+            <span class="wheel"></span>
+          </div>
+          <span class="scroll-text">Scroll Down</span>
+        </div>
+      </div>
+
+      <!-- Floating Balloons Elements -->
+      <div class="floating-balloons-container" aria-hidden="true">
+        <div class="balloon balloon-pink b1">🎈</div>
+        <div class="balloon balloon-purple b2">🎈</div>
+        <div class="balloon balloon-gold b3">✨</div>
+        <div class="balloon balloon-pink b4">💖</div>
+        <div class="balloon balloon-blue b5">🎈</div>
+      </div>
+    </section>
+
+    <!-- ==================== 2. TAMIL BIRTHDAY WISHES SECTION ==================== -->
+    <section class="wishes-section section-padding" id="wishes">
+      <div class="section-header text-center">
+        <span class="section-tag">💌 இதயத்தின் வாழ்த்துகள்</span>
+        <h2 class="section-title">
+          <span class="emoji-glow">💗</span> இனிய பிறந்தநாள் வாழ்த்துகள் <span class="emoji-glow">💗</span>
+        </h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="wishes-cards-grid">
+        <!-- Card 1: The Deep Romantic Poem -->
+        <article class="glass-card wish-card poem-card" data-tilt>
+          <div class="card-glow-edge"></div>
+          <div class="card-icon-badge icon-heart">
+            <span>🤍</span>
+          </div>
+          <div class="card-badge-label">என் பேரழகிக்கு</div>
+          <div class="poem-scroll-content">
+            <p class="poem-line highlight">பிறந்தநாள் வாழ்த்துக்கள் பேரழகி ❤️🩹🤍🫴🏻</p>
+            <p class="poem-line">யார் நீ எனக்கு சொல்கிறேன் சிறு கிருக்கல் ஒன்றை ...🫂</p>
+            <p class="poem-line">வலிகள் பலகண்டு வாழ தகுதியற்று நின்றேன்...🥹</p>
+            <p class="poem-line">வலம்புரி வெல்லும் வலைவினை உடைய வளர்பிறை உன்னை காணும் வரை .....🫵🏻</p>
+            <p class="poem-line">தனிமை நிறைந்த என்னை தலைவிடைய இன்னொரு தாய் தானே ....🤍👸</p>
+            <p class="poem-line">பின்பு தன்னிலை மறந்து தயங்கி தயங்கி உன் சமூக ஊடகங்களை கேட்டேன்....😘🧿</p>
+            <p class="poem-line">பின்பு ஊடகத்தில் ஊடல் கொண்டு உலகத்தை மறந்து உணர்வில்லா ஒரு உறவு பிறந்தது.......!!!!</p>
+            <p class="poem-line">காதலா ...???? காமமா....???</p>
+            <p class="poem-line">காமத்திற்கு காதல் என பெயரிடும் இந்த கள்ள சமூகத்தில் காமத்தில் காதல் கண்ட நம் புனிதம் தானே ...✨🍂🪐</p>
+            <p class="poem-line">உனக்கும் ஆசைதான் முத்தமிட இருப்பினும் ஈராயிரம் முறையாவது கெஞ்ச விடுவாய் 💋🫂</p>
+            <p class="poem-line">இன்னும் எத்தனை நாள் என்று தெரியவில்லை ....👑🕊️</p>
+            <p class="poem-line highlight-closing">இருக்கும் வரை இறுக்கி அணைத்துக்கொள்...🫂🥹🫵🏻🤗<br>இனிய பிறந்தநாள் வாழ்த்துக்கள் ஹரிபிரியா 🧿🥺🫅🏻🤍</p>
+          </div>
+          <div class="card-footer-decoration">
+            <span class="flower-icon">🌸</span>
+            <span class="infinity-text">என்றும் உன்னுடன்...</span>
+            <span class="flower-icon">🌸</span>
+          </div>
+        </article>
+
+        <!-- Card 2: Enduring Smile -->
+        <article class="glass-card wish-card" data-tilt>
+          <div class="card-glow-edge"></div>
+          <div class="card-icon-badge icon-star">
+            <span>⭐</span>
+          </div>
+          <div class="card-badge-label">மாறாத புன்னகை</div>
+          <div class="wish-body-content">
+            <p class="quote-text">
+              "வருடங்கள் கடந்து செல்லலாம்...<br>
+              ஆனால் உன் முகத்தில் இருக்கும்<br>
+              இந்த அழகான புன்னகை மட்டும்<br>
+              <span class="gold-highlight">என்றும் மாறாமல் இருக்கட்டும்</span> ✨"
+            </p>
+            <p class="quote-subtext">
+              உன் ஒவ்வொரு சிரிப்பிலும் ஆயிரம் நிலவுகள் ஒளிர்கின்றன. எந்த ஒரு நாளும் உன் புன்னகையை திருட அனுமதிக்காதே!
+            </p>
+          </div>
+          <div class="card-footer-decoration">
+            <span class="sparkle-star">✨</span>
+            <span class="smiley-glow">😊</span>
+            <span class="sparkle-star">✨</span>
+          </div>
+        </article>
+
+        <!-- Card 3: Dreams & Success -->
+        <article class="glass-card wish-card" data-tilt>
+          <div class="card-glow-edge"></div>
+          <div class="card-icon-badge icon-leaf">
+            <span>🌿</span>
+          </div>
+          <div class="card-badge-label">வெற்றிக் கனவுகள்</div>
+          <div class="wish-body-content">
+            <p class="quote-text">
+              "உன் கனவுகள் அனைத்தும் நனவாக,<br>
+              உன் பாதைகள் அனைத்தும் வெற்றியாக,<br>
+              உன் வாழ்க்கை முழுவதும்<br>
+              <span class="gold-highlight">மகிழ்ச்சி நிறைந்ததாக இருக்கட்டும்</span> 💫"
+            </p>
+            <p class="quote-subtext">
+              நீ தொடும் எல்லைகள் யாவும் வெற்றியாக மலர, இந்த இனிய பிறந்தநாளில் இதயப்பூர்வமான வாழ்த்துகள்!
+            </p>
+          </div>
+          <div class="card-footer-decoration">
+            <span class="flower-icon">🕊️</span>
+            <span class="infinity-text">வாழ்க வளமுடன்</span>
+            <span class="flower-icon">🕊️</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== 3. MEMORY / PHOTO GALLERY SECTION ==================== -->
+    <section class="memories-section section-padding" id="memories">
+      <div class="section-header text-center">
+        <span class="section-tag">📸 நினைவுக் கூடம்</span>
+        <h2 class="section-title">
+          <span>📸</span> அழகான நினைவுகள் <span>❤️</span>
+        </h2>
+        <p class="section-subtitle">
+          "சில தருணங்கள் புகைப்படமாக மட்டும் இல்லை...<br>நம் மனதில் என்றும் வாழும் நினைவுகள் ❤️"
+        </p>
+        <div class="title-underline"></div>
+      </div>
+
+      <!-- Polaroid Cards Arc / Carousel -->
+      <div class="polaroid-gallery-wrapper">
+        <button class="gallery-nav-btn prev-btn" id="galleryPrevBtn" aria-label="Previous photo">‹</button>
+        
+        <div class="polaroid-track" id="polaroidTrack">
+
+          <!-- Photo 1: Sunset Buddu Mah -->
+          <div class="polaroid-card" data-index="0" data-caption="Buddu mah ♡ - பொன்னான மாலைப்பொழுது, என்றும் மாறாத அன்பு 🌅">
+            <div class="polaroid-tape"></div>
+            <div class="polaroid-image-box">
+              <img src="assets/images/photo4_buddumah_sunset.jpg" alt="Buddu mah with sunset portrait" loading="lazy">
+              <div class="photo-overlay">
+                <span class="zoom-hint">🔍 Expand</span>
+              </div>
+            </div>
+            <div class="polaroid-caption">
+              <span class="handwritten-title">Buddu mah ♡</span>
+              <span class="caption-date">Sunset Moments 🌅</span>
+            </div>
+          </div>
+
+          <!-- Photo 2: Artistic Portrait Collage Hari Mah -->
+          <div class="polaroid-card featured" data-index="1" data-caption="Hari mah ♡ - பேரழகின் ஒவ்வொரு கோணமும் ஒரு கவிதை ✨">
+            <div class="polaroid-tape"></div>
+            <div class="polaroid-image-box">
+              <img src="assets/images/photo3_harimah_collage.jpg" alt="Hari mah portrait art collage" loading="lazy">
+              <div class="photo-overlay">
+                <span class="zoom-hint">🔍 Expand</span>
+              </div>
+            </div>
+            <div class="polaroid-caption">
+              <span class="handwritten-title">Hari mah ♡</span>
+              <span class="caption-date">Pure Elegance ✨</span>
+            </div>
+          </div>
+
+          <!-- Photo 3: Outdoor Couple Pink & Blue -->
+          <div class="polaroid-card" data-index="2" data-caption="Together Forever - நாம் ஒன்றாக கைகோர்த்து நின்ற அழகான நொடி 👫">
+            <div class="polaroid-tape"></div>
+            <div class="polaroid-image-box">
+              <img src="assets/images/photo1_couple_pink.jpg" alt="Couple outdoor standing together" loading="lazy">
+              <div class="photo-overlay">
+                <span class="zoom-hint">🔍 Expand</span>
+              </div>
+            </div>
+            <div class="polaroid-caption">
+              <span class="handwritten-title">Together 👫</span>
+              <span class="caption-date">Walking Beside You ❤️</span>
+            </div>
+          </div>
+
+          <!-- Photo 4: Cinema Selfie -->
+          <div class="polaroid-card" data-index="3" data-caption="- my day ❤️ - இருளிலும் ஒளிவீசிய உன் கண்கள், மறக்க முடியாத திரையரங்கத் தருணம் 🎬">
+            <div class="polaroid-tape"></div>
+            <div class="polaroid-image-box">
+              <img src="assets/images/photo2_cinema.jpg" alt="Cinema theater selfie with - my day" loading="lazy">
+              <div class="photo-overlay">
+                <span class="zoom-hint">🔍 Expand</span>
+              </div>
+            </div>
+            <div class="polaroid-caption">
+              <span class="handwritten-title">- my day ❤️</span>
+              <span class="caption-date">Cinema Vibe 🍿</span>
+            </div>
+          </div>
+
+          <!-- Photo 5: Ride Selfie -->
+          <div class="polaroid-card" data-index="4" data-caption="Playful Joy - விளையாட்டும் புன்னகையும் இணைந்த இனிமையான தருணங்கள் 🎡">
+            <div class="polaroid-tape"></div>
+            <div class="polaroid-image-box">
+              <img src="assets/images/photo5_ride_selfie.jpg" alt="Couple ride selfie with blessings" loading="lazy">
+              <div class="photo-overlay">
+                <span class="zoom-hint">🔍 Expand</span>
+              </div>
+            </div>
+            <div class="polaroid-caption">
+              <span class="handwritten-title">Playful Bliss 🎡</span>
+              <span class="caption-date">Blessed Days 🌸</span>
+            </div>
+          </div>
+
+        </div>
+
+        <button class="gallery-nav-btn next-btn" id="galleryNextBtn" aria-label="Next photo">›</button>
+      </div>
+
+      <div class="gallery-action-wrapper text-center">
+        <button class="btn-gallery-modal" id="openGalleryModalBtn">
+          <span>🖼️</span> View Full Gallery
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================== 4. BIRTHDAY TIMELINE SECTION ==================== -->
+    <section class="timeline-section section-padding" id="timeline">
+      <div class="section-header text-center">
+        <span class="section-tag">🌟 காலச்சுவடுகள்</span>
+        <h2 class="section-title">
+          <span>✨</span> நினைவுகளின் பயணம் <span>✨</span>
+        </h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="timeline-container">
+        <div class="timeline-glowing-line" id="timelineLine"></div>
+
+        <div class="timeline-nodes-grid">
+          <!-- Step 1 -->
+          <div class="timeline-node" data-tilt>
+            <div class="node-icon-circle">
+              <span class="node-icon">🌸</span>
+            </div>
+            <div class="node-glass-card">
+              <div class="node-step">01</div>
+              <h3 class="node-title">ஒரு அழகான தொடக்கம் 🌸</h3>
+              <p class="node-desc">
+                வாழ்க்கை புதிய கனவுகளுடன் தொடங்கியது... உன்னை சந்தித்த அந்த நொடி என் வாழ்வின் மிகச்சிறந்த திருப்புமுனை.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="timeline-node" data-tilt>
+            <div class="node-icon-circle">
+              <span class="node-icon">⭐</span>
+            </div>
+            <div class="node-glass-card">
+              <div class="node-step">02</div>
+              <h3 class="node-title">மறக்க முடியாத தருணங்கள் 💫</h3>
+              <p class="node-desc">
+                ஒவ்வொரு தருணமும் ஒரு பொக்கிஷம்... நாம் பகிர்ந்த சிரிப்புகளும், சின்ன சின்ன சண்டைகளும், அன்பான உரையாடல்களும்.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="timeline-node" data-tilt>
+            <div class="node-icon-circle">
+              <span class="node-icon">❤️</span>
+            </div>
+            <div class="node-glass-card">
+              <div class="node-step">03</div>
+              <h3 class="node-title">சிரிப்பால் நிறைந்த நாட்கள் ❤️</h3>
+              <p class="node-desc">
+                உன்னுடன் இருக்கும் ஒவ்வொரு நொடியும் மதிப்புமிக்கது... கவலைகளை மறந்து மனதார சிரித்த நாட்கள்!
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="timeline-node" data-tilt>
+            <div class="node-icon-circle">
+              <span class="node-icon">♾️</span>
+            </div>
+            <div class="node-glass-card">
+              <div class="node-step">04</div>
+              <h3 class="node-title">இன்னும் பல நினைவுகள் உருவாகட்டும் ✨</h3>
+              <p class="node-desc">
+                வாழ்க்கை நெடுகிலும் நாம் சேர்ந்து பயணிக்க வேண்டிய அழகான தூரம் காத்திருக்கிறது... என்றும் பிரியாமல்!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. 3D SURPRISE GIFT BOX SECTION ==================== -->
+    <section class="surprise-section section-padding" id="surprise">
+      <div class="section-header text-center">
+        <span class="section-tag">🎁 இரகசியப் பரிசு</span>
+        <h2 class="section-title">
+          <span>🎁</span> உனக்காக ஒரு சிறிய <em>Surprise...</em>
+        </h2>
+        <p class="section-subtitle">பெட்டியை தொட்டு திறந்து பார், உன் இதயம் விரும்பும் வாழ்த்து காத்திருக்கிறது!</p>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="surprise-stage-wrapper">
+        <div class="gift-box-3d-scene" id="giftBoxScene">
+          <div class="gift-box-container" id="interactiveGiftBox" role="button" aria-label="Click to open birthday surprise box" tabindex="0">
+            <!-- Gift Box Glow Aura -->
+            <div class="gift-aura"></div>
+
+            <!-- 3D Gift Box -->
+            <div class="gift-box" id="giftBox">
+              <!-- Lid with ribbon bow -->
+              <div class="box-lid" id="boxLid">
+                <div class="lid-face lid-top">
+                  <div class="ribbon-cross-h"></div>
+                  <div class="ribbon-cross-v"></div>
+                  <div class="bow-knot">
+                    <span class="bow-loop left"></span>
+                    <span class="bow-loop right"></span>
+                    <span class="bow-center">✨</span>
+                  </div>
+                </div>
+                <div class="lid-face lid-front"></div>
+                <div class="lid-face lid-back"></div>
+                <div class="lid-face lid-left"></div>
+                <div class="lid-face lid-right"></div>
+              </div>
+
+              <!-- Main Box Cube -->
+              <div class="box-body" id="boxBody">
+                <div class="box-face face-front">
+                  <div class="ribbon-stripe"></div>
+                  <span class="box-tag">For Hari Priya</span>
+                </div>
+                <div class="box-face face-back">
+                  <div class="ribbon-stripe"></div>
+                </div>
+                <div class="box-face face-left">
+                  <div class="ribbon-stripe"></div>
+                </div>
+                <div class="box-face face-right">
+                  <div class="ribbon-stripe"></div>
+                </div>
+                <div class="box-face face-bottom"></div>
+              </div>
+            </div>
+
+            <!-- Click prompt -->
+            <div class="click-to-open-prompt" id="giftPrompt">
+              <span class="hand-pointer">👆</span>
+              <span class="prompt-text">Click to Open</span>
+            </div>
+          </div>
+
+          <!-- Revealed Surprise Card -->
+          <div class="revealed-surprise-card glass-card" id="revealedSurpriseCard" aria-hidden="true">
+            <div class="card-confetti-badge">🎉 Happy Birthday! 🎉</div>
+            <div class="revealed-heart-badge">💖</div>
+            <div class="revealed-message">
+              <p class="greeting-highlight">
+                "நீ எப்போதும் இப்படியே<br>
+                சந்தோஷமாகவும்,<br>
+                புன்னகையுடனும்,<br>
+                அழகான கனவுகளுடனும் வாழ வேண்டும்."
+              </p>
+              <h3 class="revealed-signature">
+                Happy Birthday! ❤️🎂<br>
+                <span class="special-name">- என்றும் அன்புடன் உன் புட்டு மா / படி ❤️</span>
+              </h3>
+            </div>
+            <div class="revealed-actions">
+              <button class="btn-repack" id="repackGiftBtn">
+                <span>🔄</span> Close & Re-open
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 6. INTERACTIVE HEART BURST SECTION ==================== -->
+    <section class="heart-section section-padding" id="heart-touch">
+      <div class="section-header text-center">
+        <span class="section-tag">💗 அன்பின் தொடுதல்</span>
+        <h2 class="section-title">
+          <span>💗</span> அன்பின் தொடுதல் <span>💗</span>
+        </h2>
+        <p class="section-subtitle">
+          "ஒவ்வொரு கிளிக்-கிலும் ஒரு இதயம்...<br>உன் மகிழ்ச்சிக்காக..."
+        </p>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="heart-interactive-arena" id="heartArena">
+        <div class="floating-hearts-layer" id="heartsLayer"></div>
+        
+        <div class="interactive-center-heart" id="pulsingCenterHeart" role="button" aria-label="Tap to generate love hearts" tabindex="0">
+          <div class="heart-pulse-waves"></div>
+          <div class="heart-pulse-waves wave-2"></div>
+          <div class="heart-shape">
+            <span class="heart-inner-icon">💖</span>
+          </div>
+          <div class="center-heart-glow"></div>
+        </div>
+
+        <div class="heart-arena-hint">
+          <span>👆 Click the heart or tap anywhere on screen to shower love</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 7. FIREWORKS CELEBRATION SECTION ==================== -->
+    <section class="fireworks-section" id="fireworks">
+      <div class="fireworks-header-overlay text-center">
+        <span class="section-tag fireworks-tag">🎆 வான்வேடிக்கை இரவு</span>
+        <h2 class="fireworks-title">
+          <span>🎆</span> இந்த இரவு உனக்காக <span>✨</span>
+        </h2>
+        <p class="fireworks-quote">
+          "உன் வாழ்க்கை வானவேடிக்கை போல<br>
+          <span class="neon-color-cycle">என்றும் வண்ணமயமாக இருக்கட்டும்!</span> 🎆"
+        </p>
+        <p class="fireworks-instruction">✨ வானத்தை தொடுங்கள் - பட்டாசுகள் வெடிக்கும்! ✨</p>
+      </div>
+
+      <!-- Fireworks Canvas -->
+      <canvas id="fireworksCanvas" class="fireworks-canvas"></canvas>
+    </section>
+
+    <!-- ==================== 8. FINAL EMOTIONAL CLIMAX SECTION ==================== -->
+    <section class="final-section section-padding" id="final">
+      <div class="final-glow-backdrop"></div>
+      
+      <div class="final-content text-center">
+        <div class="final-quote-box glass-card" data-tilt>
+          <p class="final-tamil-thought">
+            "ஒரு வயது கூடுகிறது...<br>
+            ஆனால் அழகான நினைவுகள்<br>
+            <span class="gold-gradient-text">இன்னும் பல உருவாகட்டும்</span> ❤️"
+          </p>
+        </div>
+
+        <div class="final-birthday-crest">
+          <span class="crest-cake">🎂</span>
+          <h2 class="final-happy-text">HAPPY BIRTHDAY</h2>
+          <div class="final-name-highlight">
+            <span class="bracket-gold">[</span>
+            <span class="name-buddy">Hari Priya • Buddy...!!!</span>
+            <span class="bracket-gold">]</span>
+          </div>
+        </div>
+
+        <div class="final-three-wishes">
+          <div class="wish-pill"><span class="pill-dot">✨</span> Keep Smiling.</div>
+          <div class="wish-pill"><span class="pill-dot">✨</span> Keep Dreaming.</div>
+          <div class="wish-pill"><span class="pill-dot">✨</span> Keep Shining.</div>
+        </div>
+
+        <div class="final-replay-cta">
+          <button class="btn-replay-experience" id="replayExperienceBtn" data-magnetic>
+            <span class="btn-replay-glow"></span>
+            <span class="btn-icon">💖</span>
+            <span class="btn-label">Replay Birthday Experience</span>
+            <span class="btn-icon">✨</span>
+          </button>
+        </div>
+
+        <footer class="celebration-footer">
+          <p>Created with infinite love for <strong>Hari Priya (Buddu mah)</strong> ❤️</p>
+          <p class="copyright-sub">May all your days ahead be as magical as tonight ✨</p>
+        </footer>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FLOATING BOTTOM QUICK NAVIGATION ==================== -->
+  <nav class="bottom-quick-bar" id="bottomQuickBar" aria-label="Quick Section Navigation">
+    <div class="bar-left-label">
+      <span class="compass-icon">🧭</span>
+      <span class="quick-nav-text">Quick Navigation</span>
+    </div>
+
+    <div class="quick-nav-items">
+      <a href="#hero" class="nav-item active" data-section="hero" title="Home">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-name">Home</span>
+      </a>
+      <a href="#wishes" class="nav-item" data-section="wishes" title="Wishes">
+        <span class="nav-icon">💌</span>
+        <span class="nav-name">Wishes</span>
+      </a>
+      <a href="#memories" class="nav-item" data-section="memories" title="Memories">
+        <span class="nav-icon">📸</span>
+        <span class="nav-name">Memories</span>
+      </a>
+      <a href="#timeline" class="nav-item" data-section="timeline" title="Timeline">
+        <span class="nav-icon">✨</span>
+        <span class="nav-name">Timeline</span>
+      </a>
+      <a href="#surprise" class="nav-item" data-section="surprise" title="Surprise">
+        <span class="nav-icon">🎁</span>
+        <span class="nav-name">Surprise</span>
+      </a>
+      <a href="#final" class="nav-item" data-section="final" title="Final">
+        <span class="nav-icon">⭐</span>
+        <span class="nav-name">Final</span>
+      </a>
+    </div>
+
+    <div class="bar-right-controls">
+      <button class="bottom-sound-btn" id="bottomSoundBtn" aria-label="Toggle music playback">
+        <span class="sound-icon" id="bottomSoundIcon">🔇</span>
+        <span class="sound-label">Music <strong id="bottomSoundState">OFF</strong></span>
+      </button>
+      <button class="scroll-to-top-btn" id="scrollToTopBtn" aria-label="Scroll back to top">
+        <span>▲</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==================== FULLSCREEN PHOTO LIGHTBOX MODAL ==================== -->
+  <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Close photo view">&times;</button>
+      
+      <div class="lightbox-stage">
+        <button class="lightbox-nav-arrow prev" id="modalPrevBtn" aria-label="Previous image">‹</button>
+        <div class="lightbox-image-container">
+          <img src="" alt="Enlarged birthday memory" id="modalImage">
+        </div>
+        <button class="lightbox-nav-arrow next" id="modalNextBtn" aria-label="Next image">›</button>
+      </div>
+
+      <div class="lightbox-info">
+        <p class="modal-caption" id="modalCaption"></p>
+        <div class="modal-counter" id="modalCounter">1 / 5</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Application Entry -->
+  <script src="app.js"></script>
+</body>
+</html>
